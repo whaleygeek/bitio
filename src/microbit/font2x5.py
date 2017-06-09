@@ -1,6 +1,8 @@
 # font2x5.py  07/06/2017  D.J.Whale
 #
 # This font allows two digits to be squashed side by side on a micro:bit 5x5 display.
+#
+# The font was christened as "WhaleySans" by PragmaticPhil on 07/06/2017
 
 font_data = (
     # 0
