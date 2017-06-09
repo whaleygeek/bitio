@@ -1,0 +1,5 @@
+This package came from here:
+
+https://github.com/pyserial/pyserial/commit/13c8f6da4539b7c4ca8372fe614560cfe0e4eddd
+
+

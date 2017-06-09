@@ -1,0 +1,158 @@
+--------------------------------------------------------------------------------
+TODO
+
+Possible use cases
+
+It might have multiple forms:
+  import microbit                 # works just like a micro:bit
+  import microbit.GPIO as GPIO    # works like RPi.GPIO or anyio.GPIO
+  import microbit.radio           # works just like a micro:bit radio
+  import microbit.radio_gateway   # uses a micro:bit as a gateway to radio network
+  import microbits                # works like a micro:bit but multiple instances
+
+I really want to kill off the old gateway and remote projects (deprecate with
+signpost) and just use this as the basis for all future projects.
+
+
+--------------------------------------------------------------------------------
+DESIGN FOR API SELECTORS
+
+Modes of a micro:bit API, note will check if correct implementation
+loaded on micro:bit and reload the right one if not correct.
+This includes finding the serial port and finding the drive.
+
+- python REPL implementing same API as on MicroPython
+  but using the raw REPL under the bonnet.
+  Should then be possible to import microbit
+  import microbit
+
+- anyio like device with access to all IO peripherals
+  from microbit import bitio
+  bitio.output(1, True)
+
+- radio gateway (with escaped tuning interface and binary protection)
+  but uses same API as micropython radio API, with an added send and
+  receive and some callbacks for event processing.
+  import radio # implies a radio package not a microbit package
+
+  radio.config()
+  msg = radio.get_message()
+  if msg is not None: print(msg)
+  radio.send_message("hello")
+
+  might be some assist at the remote end so it repeatedly reads messages
+  and signals they are available, with a bigger local queue?
+
+  Also note the desire to build a multi instanced micro:bit gateway
+  with microbits on different configurations for multi-io
+
+- user provides a custom class (probably used to implement all of above)
+  from microbit import Custom
+  def MyAPI(microbit.Custom):
+    def something_useful():pass
+
+  m = MyAPI()
+  m.something_useful()
+
+--------------------------------------------------------------------------------
+TODO
+
+switching API's between single microbit that auto connects on import,
+and multiple microbits that connect on use.
+
+import microbit # we get a single auto connecting microbit
+
+import microbits # we get more than one, and a manager that helps us to
+select which one we want with a directory - might even access details.txt
+to get serial number etc?
+
+For this to work, microbits needs to be the common API and microbit
+needs to be a specific wrapper around that. We also want to offer
+up eventually the full microbit api via REPL, along with some grouping
+so that all the extra serial methods and config is inside a single wrapper
+and not polluting the namespace.
+
+Would be nice for dir() to still return the dir of what is on the device,
+perhaps by remoting the dir() to the actual device to get the real info,
+rather than caching it locally.
+
+
+The package is called 'microbit'
+
+import microbit - get a single auto connecting microbit
+microbit.xxx()
+
+from microbit import microbits - get a factory of microbits
+
+m = microbits.get_microbit(1) # the first connecting one?
+
+
+--------------------------------------------------------------------------------
+TODO: work on microbit package
+
+1. needs to support more than one micro:bit concurrently
+2. if there is only one micro:bit in use, want it to be automatic
+3. two different imports, one for a single auto connecting micro:bit,
+3b. one for multiple connect on demand microbits
+
+5. Work out if we can make the microbit python host API completely self
+discovering - i.e. whatever you put, it tries to run it on the micro:bit
+with a sensible text rendering, and if an error comes back it passes
+that error back (thus it will be very thin and generic)
+
+--------------------------------------------------------------------------------
+TODO
+
+Make improvements to the host and target end, so that it works off of a
+series of plugins, so that it is easily extendable for other features.
+
+If we use microPython on the target end, we will be severely limited
+in space, but we can allow people to locally hack both ends because
+the micropython.hex will be cached locally, so we can build a working
+hex ourselves with no web connectivity or tool install requirements.
+
+
+--------------------------------------------------------------------------------
+TODO
+
+Implement the auto detect and auto load logic as per spec.txt
+
+
+================================================================================
+
+
+--------------------------------------------------------------------------------
+TODO - later on, will need a more complete display implementation.
+
+- display.show(number)  (single digits for now are fine, add fonts later)
+
+
+microbit.display.
+  show(iterable, delay=400, *, wait=True, loop=False, clear=False)
+  clear()
+  scroll(string, delay=150, *, wait=True, loop=False, monospace=False)
+  show(image)
+
+  get_pixel(x, y)
+  set_pixel(x, y, value)
+  on()
+  off()
+  is_on()
+
+
+================================================================================
+
+--------------------------------------------------------------------------------
+TODO
+
+* take a look at our soft-bus packages and make sure the SPI and I2C abstractions
+  are compatible.
+
+* Take a look at Ryan's new abstractions in Python on his RTK-GPIO board
+* write GPIO and other connectors for micro:bit
+* write GPIO and other abstractions in Python
+* create a branch on tbl-anyio and merge this in as another platform
+* also merge in the new abstractions in Python
+
+
+END

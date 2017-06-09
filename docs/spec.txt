@@ -1,0 +1,407 @@
+title: plug and play microbit
+date: 29/05/2017
+author: David Whale
+
+--------------------------------------------------------------------------------
+
+Note, we had other ideas for using the micro:bit for IO for testing the SD card
+implementation - is this just an extension of that? Yes, let's start there,
+as there is no point having two ways of doing the same thing. This project
+brings with it a load of new innovative ideas in terms of auto loading and
+plugins, but would be a natural place to park things like GPIO and SPI
+which is what we need for remote development of an SDCard interface.
+
+DEVELOPMENT
+
+- first develop this in secret in a bzr_work folder
+
+  BZR: tbl-bitio
+ 
+- When it is all tested and working and we are ready to surface it,
+  take a cut of it and put first cut in github.
+
+  GITHUB: bitio
+
+
+--------------------------------------------------------------------------------
+
+SUMMARY
+
+1) an auto-installing micro:bit interface for a game controller I/O device, 
+as a project that is bundled inside other code kits (a bit like anyio)
+
+2) A minimum set of features required for the book chapter to be written
+
+3) A list of advanced features that can be added after the chapter is written
+
+4) A plug-in architecture so new features can be added in a non disruptive way
+
+5) A README that points back to the github for update instructions
+
+6) A micro:bit side collection of code (target assist to prevent polling)
+
+7) A host side collection of code (to offer a really simple API with automated
+detect and install workflows)
+
+Note, we will need to provide links to the mbed serial driver, for windows use.
+Users will need to install that first before doing anything else on windows.
+
+
+--------------------------------------------------------------------------------
+
+OVERVIEW OF HOW IT WORKS
+
+Note, this must all work in Python 3 (optional in Python 2)
+
+A. CONNECTION
+
+Run host python code. It need to know/do the following:
+
+1. Host drive appears
+   - that the micro:bit is connected or not
+   - what drive path should be used for the micro:bit
+   - is there any identity info for the micro:bit (e.g. details.txt)
+   - if no host drive at this point, must stop here
+
+2. serial port appears
+   - ask user to confirm they have installed the mbed serial driver
+     (or can we detect this by looking in the registry?)
+   - identify and remember the serial port (same workflow as anyio)
+   - if no serial port at this point, must stop here
+
+3. serial port identifies itself?
+   - if the micro:bit code is running, it should identify itself with a 
+     unique string on the serial port when queried.
+   - if it does not identify, or the identity does not match what we want
+     (e.g. wrong version of hex loaded with wrong features)
+
+4. Identify which hex file needs to be present this time
+   - if not specified, there will be a default
+   - if is specified, it must exist, or be buildable locally
+
+5. optionally build hex file
+   - see if there is a cached hex for the desired build
+   - tell user we are building a new hex file
+   - if there is not, find micropython code for it
+   - prepend any standard protocol code to desired code
+   - compress code
+   - hexlify it
+   - identify which base micropython.hex it needs (there could be multiple)
+   - join both hexes to create a cached hex
+   - cached hex must be uniquely identifiable
+   - check that script size limit has not been exceeded
+   (note, optional step here, might pre-load the filesystem also if position is known
+   for that .hex) could then load data or code in that too.
+
+6. optionally flash the hex to the micro:bit
+   - tell user we are flashing a new hex file
+   - this is a file copy (but inspired by uflash perhaps?)
+   - wait for the drive to disappear, end of flashing process to be achieved
+   (end of flashing may be hard to detect, not necc end of file copy?)
+   (serial connect might just need to be robust)
+
+7. connect/wait to serial port
+   - wait for expected port to be usable
+   - poll for identity string
+   - once identity string appears and is correct, we're done
+   - if we still get no/wrong identity string, fail here
+
+B. CONFIGURATION
+
+Configuration mode always happens before run mode is enabled.
+This allows the host to enable/disable various regular reports,
+and means that it does not have to do polls for data. But it is all about
+getting the device into a known state.
+
+- on reset, all reports are disabled
+- turn on reports for any input devices we are scanning,
+  including setting their rate, and setting enable/disable thresholds
+  and deltas where available.
+- might also enable code that does animation looping etc.
+
+C. RUN
+
+At the end of configuration mode, a RUN-START command is sent, this will
+start any regular processing on the micro:bit side.
+
+
+D. ERROR
+
+If the micro:bit gets into a state it does not know how to continue
+it has to enter a safe error state.
+
+It must be possible for the host end to know that the error state has occured,
+e.g. the micro:bit will try to regularly report the error state over the serial
+port, and also respond to any incoming command with an error response.
+
+It should be possible for the host to soft reset the micro:bit, or ask the user
+to press the reset button to hard reset it. In the case of hard reset,
+the drive and serial port will disappear and re-appear, so the host must
+cleanly close the serial port or handle any errors that occur due to surprise
+removal.
+
+
+--------------------------------------------------------------------------------
+
+CONCEPTS - MICRO:BIT interface
+
+* code hosted in github with a MIT licence
+* code copied into starter kit for convenience
+* python code that runs in python 2/3 on pi, mac, pc, linux
+* pre-written micro:bit code inside the folder
+* combination of micro:bit and the host python libraries offer a game controller
+* importing the module auto locates the micro:bit, flashes the right code to
+  it and opens the embedded pyserial interface. All access is via the host
+  python API. Borrow some of the api/workflow ideas from our progduino project
+  where it is an api for loading code, with a default app.
+* might be more than one embedded hex file pre-rolled in the python project folder
+* might be micropython or might be PXT - although micro:python might be easier
+  as we could surface the sourcecode and do the hexlifying locally automatically,
+  so that users could add their own modified controller code to extend it.
+  (this would also allow a route into coding on the micro:bit)
+* essentially each micro:bit build is a user definable plugin.
+
+* Note, chapter will not plug in any electronics but users can explore further
+
+GAME CONTROLLER features
+* simple features
+  + button A and B - press event, release event, held time, hold time
+  + display a string on the display
+  + display an icon on the display
+  + detect a standard shake
+  + detect direction of tilt in 2 axies
+  + detect direction and amount of tilt in 2 axies
+  + detect pin touched or not touched
+
+
+* advanced features
+  + a way to download more plugins from the website
+    (e.g. each of these should just be an upgraded hex file that follows
+     the serial or radio protocol)
+  + display an animation on the display
+  + GUI features (select icon from a list)
+  + read raw accelerometer values at a specific report rate
+  + read other gestures (face down, face up, logo up, logo down, falling, rising)
+  + detect active high or active low on digital input
+  + detect threshold above/below with hysteresis on analog inout
+  + set a digital pin high or low
+  + write a value to an analog pin
+  + make a sound on the speaker
+  + move a servo
+  + calibrate compass, read compass direction
+  + change accelerometer range
+  + send and receive data via radio to another microbit
+    (define a radio protocol)
+    - just a remote gateway, with actual code at other end
+    (e.g. commands tx/rx via radio rather than serial, flash once
+    then flash the gateway bit)
+  + multiple micro:bits via radio?
+  + transfer UART data
+  + transfer I2C data
+  + transfer SPI data
+
+  + bluetooth gateway to phone - use gamepad on android and micro:bit as a
+    bluetooth gateway (with right hex file and pairing process)
+  + use with bluedot as a bluetooth gateway
+  + bluetooth MIDI?
+  + light sensing
+  + light communication
+
+
+HOST PYTHON features
+* auto detect micro:bit serial port
+* auto detect micro:bit drive
+* auto detect if right hex file is loaded
+* auto flash appropriate hex file if needed
+
+* event driven (using annotations to write handlers)
+* automatic top loop thread (by doing auto-start and auto stop semantics)
+* polling vs event driven hidden from the user
+* wire protocol hidden from the user
+* the fact that it is python or javascript or anything else hidden from user
+
+* low level API to handle code load, send and receive data, poll vs event
+* build service API on top of low level API
+
+OTHER IDEAS
+* use simple tkinter gui to pop up a window for instructions while code loading?
+  a more advanced version than a console. Could use graphics with nice pictures
+  of the micro:bit
+
+* users drop their MicroPython code into a folder to write their own plugin.
+  Gets auto merged with some serial or radio protocol code then hexlified and
+  downloaded to micro:bit - strips out comments and turns spaces to tabs to
+  compress code, shows error if resultant file is too big, tells you how much
+  it is 'too big' by so you can simplify your program.
+
+* backup plan, if the auto code load fails, or if you want to do it manually,
+  give people some code to prepend to their MicroPython code on the web editor
+  and manually download the hex file and manually flash your micro:bit - then
+  use the auto port detector from anyio still as that is well tested on all
+  platforms. Describe how to do this in the readme.md and put a link to this
+  if it fails to find a micro:bit.
+
+* displays a default icon on screen when detected (a different one when disconnected,
+via heartbeats?) on micro:bit display, so you don't need to do anything to see
+if it is working or not.
+
+* the api methods need to be well documented in the github docs
+
+* It needs to have a 'brand name' allocated by whaleygeek for the micro:bit
+game controller product. Not Anyio (but might want an anyio upgrade so you can
+use it with anyio.microbit)
+
+
+--------------------------------------------------------------------------------
+BINARY SPEC IDEAS
+
+SPECIFICATION FOR MB_REMOTE
+
+PURPOSE
+
+This is a high performance I/O remote, using the micro:bit.
+
+It supports the following I/O primitives, remoted over USB serial
+
+* these items are a MVP required for remote SDCard testing
+
+1. GPIO
+  digital output
+  digital input
+  analog output
+  analog input
+
+2. SPI
+  * full transfer in both directions
+  * streaming mode to prevent need for large local buffers
+  * optional control of chipselect line
+
+3. I2C
+
+4. LIGHT LEVEL
+
+5. ACCELEROMETER
+
+6. COMPASS
+
+7. TEMPERATURE
+
+8. DISPLAY
+
+9. BUTTONS
+
+10. RADIO
+
+--------------------------------------------------------------------------------
+SKETCH OF FRAMING SPEC
+
+Two modes: Binary mode and text command mode.
+
+1. Binary mode is used for high performance transfers.
+
+2. Text mode is used for with a terminal program for low level REPL like testing
+
+3. initial mode and mode switching
+
+a. If using in text mode, must be easy to get into this mode from just a text
+terminal that is line-oriented
+
+b. If using binary mode, must be easy to get into this mode, and also know
+what mode you are in.
+
+c. Probably making it easy to interleave both modes means there is no real
+stored state that the host end has to work out. It should therefore just
+auto switch between text and binary mode by following the protocol.
+
+d. can survive unexpected board resets (which means it needs to be entirely stateless)
+
+PROPOSAL
+- a binary payload starts with a specific binary prefix character that
+you would not normally send from a host when in text mode and that would not
+normally appear in any parameters.
+
+- text mode consist of a command letter, followed by parameters, newline terminated
+using any newline sequence.
+
+Thus, to start a binary payload, just send the binary attention character
+followed by the payload. The attention character while sent at the start of
+each payload is a little bit of an overhead, it ensures good resynchronisation
+in case of errors.
+
+A binary request always generates a binary response.
+
+A text command always starts with an identifying command string which is
+ASCII, so the first character is always upper or lower case letter.
+The text command is always terminated by some newline sequence.
+
+Thus, to start a text payload, just send the command and make sure it
+is newline terminated.
+
+A text request always generates a text response.
+
+
+TEXT PAYLOAD FORMAT/REQUEST
+
+<command-group> <command> [<ws> [<parameters>]] <eol>
+
+TEXT PAYLOAD FORMAT/RESPONSE
+
+Text responses are line oriented. Thus the whole command up to <eol> must be
+processed before a response is generated. It would be normal to wait with timeout
+for a text response before sending in the next text command.
+
+<command-group>_R [<ws> [<response>]] <eol>
+
+The _R (for response) is appended to the command to signify it is a response.
+For errors, an ERR_R response will be sent including error code and error information
+
+
+
+BINARY PAYLOAD FORMAT/REQUEST
+FC <length> <command-category> <command> [<parameters>]
+
+FC = command
+
+Note that the binary command will automatically terminate after <length> characters
+and FF will be expected again to start the next binary command.
+
+Binary commands can optionally stream data as they are being processed,
+e.g. where transferring SPI data that is bi-directional.
+This means that a large receive buffer is not required on the micro:bit device.
+
+BINARY PAYLOAD FORMAT/RESPONSE
+
+FD <length> <command-category> <response data>
+
+FD = data
+
+FE = error
+
+FE <length> <error-code> [<error-info>]
+
+FA = arbitrary length
+
+FA <0-length> <payload> FB
+
+
+F0..F9 reserved
+FA     arbitrary reply
+FB     arbitrary reply end marker
+FC     command request
+FD     data reply
+FE     error reply
+
+--------------------------------------------------------------------------------
+SKETCH OF SPI MODE (TEXT)
+
+Implement this first. This will be used to bootstrap the SPI I/O agent
+in the typescript to check that it works. Binary will be added
+once this is working.
+
+SPI
+
+--------------------------------------------------------------------------------
+SKETCH OF SPI MODE (BINARY)
+
+--------------------------------------------------------------------------------
+END
