@@ -7,6 +7,22 @@ It allows you to run code in Python on a PC/Mac/Linux/Raspberry Pi
 and interact directly with the micro:bit. It works with both Python 2 and
 with Python 3.
 
+## Where is the latest version?
+
+The bitio library was written in part to support a new chapter to the highly successful
+childrens coding book 'Adventures in Minecraft'.
+
+You can get the official version of the library that supports the book from here:
+
+[Official version](https://github.com/AdventuresInMinecraft/bitio)
+
+If you want something a bit more leading edge with some experimental new features,
+go right to the author's website and get the latest code from here:
+
+[Development version] (https://github.com/whaleygeek/bitio)
+
+## What can I do with it?
+
 This is useful if you want to use the micro:bit as an input or an output
 device for other programs, e.g. for Minecraft. Tilt your micro:bit, and
 something happens in the Minecraft world. It can be used for anything
