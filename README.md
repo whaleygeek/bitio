@@ -19,7 +19,7 @@ You can get the official version of the library that supports the book from here
 If you want something a bit more leading edge with some experimental new features,
 go right to the author's website and get the latest code from here:
 
-[Development version] (https://github.com/whaleygeek/bitio)
+[Development version](https://github.com/whaleygeek/bitio)
 
 ## What can I do with it?
 
