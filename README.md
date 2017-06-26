@@ -167,6 +167,15 @@ microbit-gateway project for linking via the micro:bit radio network, amongst ot
 
 I also have a microbit.GPIO idea in the making, where it could be used a bit like RPi.GPIO.
 
+## Work in Progress
+
+I am currently experimenting with ideas to allow the use of all standard images,
+and any user images, in the same way that the micro:bit MicroPython supports them.
+
+e.g. microbit.display.show(Image.SMILE)
+
+e.g. i = Image("90909...")
+microbit.display.show(i)
 
 David Whale
 
