@@ -44,7 +44,7 @@ choose DOWNLOAD ZIP
 
 Unzip the zip file
 
-Flash the micropython.hex file onto your micro:bit by dragging and dropping
+Flash the bitio.hex file onto your micro:bit by dragging and dropping
 it onto the MICROBIT drive that appears when you plug in your micro:bit
 
 Run (in Python 2 or Python 3, both are supported) the counter.py example 
