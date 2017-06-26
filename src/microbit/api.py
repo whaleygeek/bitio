@@ -2,10 +2,88 @@
 #
 # an API to a remote micro:bit
 #
+# TODO: named Images
+# TODO: user images
 # TODO: for all pins: digital_write, digital_read
 # TODO: for analog pins: analog_write, analog_read
-# TODO: named Images
 # TODO: lots of other API methods that need implementing.
+
+#Will have to resolve in display.show as:
+#  display.show(Image.HEART)    <- no quotes
+#  display.show(list of images) will have to resolve to:
+#    display.show([Image.HEART, Image.HAPPY])    <- no quotes
+
+# Want HEART to be an instance of something we can recognise
+# as a StandardImage
+
+class StandardImage():
+    def __init__(self, name):
+        self.name = name
+
+class StandardImages():
+    HEART       = StandardImage("HEART")
+    HEART_SMALL = StandardImage("HEART_SMALL")
+    HAPPY       = StandardImage("HAPPY")
+    SMILE       = StandardImage("SMILE")
+    SAD         = StandardImage("SAD")
+    CONFUSED    = StandardImage("CONFUSED")
+    ANGRY       = StandardImage("ANGRY")
+    ASLEEP      = StandardImage("ASLEEP")
+    SURPRISED   = StandardImage("SURPRISED")
+    SILLY       = StandardImage("SILLY")
+    FABULOUS    = StandardImage("FABULOUS")
+    #MEH
+    #YES
+    #NO
+    #TRIANGLE
+    #TRIANGLE_LEFT
+    #CHESSBOARD
+    #DIAMOND
+    #DIAMOND_SMALL
+    #SQUARE
+    #SQUARE_SMALL
+    #RABBIT
+    #COW
+    #MUSIC_CROTCHET
+    #MUSIC_QUAVER
+    #MUSIC_QUAVERS
+    #PITCHFORK
+    #XMAS
+    #PACMAN
+    #TARGET
+    #TSHIRT
+    #ROLLERSKATE
+    #DUCK
+    #HOUSE
+    #TORTOISE
+    #BUTTERFLY
+    #STICKFIGURE
+    #GHOST
+    #SWORD
+    #GIRAFFE
+    #SKULL
+    #UMBRELLA
+    #SNAKE
+    #CLOCK12
+    #CLOCK11
+    #CLOCK10
+    #CLOCK9
+    #CLOCK8
+    #CLOCK7
+    #CLOCK6
+    #CLOCK5
+    #CLOCK4
+    #CLOCK3
+    #CLOCK2
+    #CLOCK1
+    #ARROW_N
+    #ARROW_NE
+    #ARROW_E
+    #ARROW_SE
+    #ARROW_S
+    #ARROW_SW
+    #ARROW_W
+    #ARROW_NW
 
 class MicroBit():
     def __init__(self, repl):
@@ -86,7 +164,9 @@ class MicroBit():
             self.name = name
 
         def show(self, v):
-            if isinstance(v, MicroBit.Image):
+            if isinstance(v, StandardImage):
+                self.parent.cmd("%s.show(Image.%s)" % (self.name, v.name))
+            elif isinstance(v, MicroBit.Image):
                 s = v.__str__() # get bitmap
                 self.parent.cmd("%s.show(Image(\"%s\"))" % (self.name, s))
             elif isinstance(v, str):
@@ -103,6 +183,8 @@ class MicroBit():
         def clear(self):
             self.parent.cmd("%s.clear()" % self.name)
 
+
+
     button_a      = Button('button_a')
     button_b      = Button('button_b')
     accelerometer = Accelerometer("accelerometer")
@@ -110,6 +192,6 @@ class MicroBit():
     pin0          = TouchPin("pin0")
     pin1          = TouchPin("pin1")
     pin2          = TouchPin("pin2")
-
+    Image         = StandardImages()
 
 # END
