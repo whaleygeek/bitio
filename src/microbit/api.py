@@ -21,69 +21,69 @@ class StandardImage():
         self.name = name
 
 class StandardImages():
-    HEART       = StandardImage("HEART")
-    HEART_SMALL = StandardImage("HEART_SMALL")
-    HAPPY       = StandardImage("HAPPY")
-    SMILE       = StandardImage("SMILE")
-    SAD         = StandardImage("SAD")
-    CONFUSED    = StandardImage("CONFUSED")
-    ANGRY       = StandardImage("ANGRY")
-    ASLEEP      = StandardImage("ASLEEP")
-    SURPRISED   = StandardImage("SURPRISED")
-    SILLY       = StandardImage("SILLY")
-    FABULOUS    = StandardImage("FABULOUS")
-    #MEH
-    #YES
-    #NO
-    #TRIANGLE
-    #TRIANGLE_LEFT
-    #CHESSBOARD
-    #DIAMOND
-    #DIAMOND_SMALL
-    #SQUARE
-    #SQUARE_SMALL
-    #RABBIT
-    #COW
-    #MUSIC_CROTCHET
-    #MUSIC_QUAVER
-    #MUSIC_QUAVERS
-    #PITCHFORK
-    #XMAS
-    #PACMAN
-    #TARGET
-    #TSHIRT
-    #ROLLERSKATE
-    #DUCK
-    #HOUSE
-    #TORTOISE
-    #BUTTERFLY
-    #STICKFIGURE
-    #GHOST
-    #SWORD
-    #GIRAFFE
-    #SKULL
-    #UMBRELLA
-    #SNAKE
-    #CLOCK12
-    #CLOCK11
-    #CLOCK10
-    #CLOCK9
-    #CLOCK8
-    #CLOCK7
-    #CLOCK6
-    #CLOCK5
-    #CLOCK4
-    #CLOCK3
-    #CLOCK2
-    #CLOCK1
-    #ARROW_N
-    #ARROW_NE
-    #ARROW_E
-    #ARROW_SE
-    #ARROW_S
-    #ARROW_SW
-    #ARROW_W
-    #ARROW_NW
+    HEART          = StandardImage("HEART")
+    HEART_SMALL    = StandardImage("HEART_SMALL")
+    HAPPY          = StandardImage("HAPPY")
+    SMILE          = StandardImage("SMILE")
+    SAD            = StandardImage("SAD")
+    CONFUSED       = StandardImage("CONFUSED")
+    ANGRY          = StandardImage("ANGRY")
+    ASLEEP         = StandardImage("ASLEEP")
+    SURPRISED      = StandardImage("SURPRISED")
+    SILLY          = StandardImage("SILLY")
+    FABULOUS       = StandardImage("FABULOUS")
+    #MEH           = StandardImage("")
+    #YES           = StandardImage("")
+    #NO            = StandardImage("")
+    #TRIANGLE      = StandardImage("")
+    #TRIANGLE_LEFT = StandardImage("")
+    #CHESSBOARD    = StandardImage("")
+    #DIAMOND       = StandardImage("")
+    #DIAMOND_SMALL= StandardImage("")
+    #SQUARE= StandardImage("")
+    #SQUARE_SMALL= StandardImage("")
+    #RABBIT= StandardImage("")
+    #COW= StandardImage("")
+    #MUSIC_CROTCHET= StandardImage("")
+    #MUSIC_QUAVER= StandardImage("")
+    #MUSIC_QUAVERS= StandardImage("")
+    #PITCHFORK= StandardImage("")
+    #XMAS= StandardImage("")
+    #PACMAN= StandardImage("")
+    #TARGET= StandardImage("")
+    #TSHIRT= StandardImage("")
+    #ROLLERSKATE= StandardImage("")
+    #DUCK= StandardImage("")
+    #HOUSE= StandardImage("")
+    #TORTOISE= StandardImage("")
+    #BUTTERFLY= StandardImage("")
+    #STICKFIGURE= StandardImage("")
+    #GHOST= StandardImage("")
+    #SWORD= StandardImage("")
+    #GIRAFFE= StandardImage("")
+    #SKULL= StandardImage("")
+    #UMBRELLA= StandardImage("")
+    #SNAKE= StandardImage("")
+    #CLOCK12= StandardImage("")
+    #CLOCK11= StandardImage("")
+    #CLOCK10= StandardImage("")
+    #CLOCK9= StandardImage("")
+    #CLOCK8= StandardImage("")
+    #CLOCK7= StandardImage("")
+    #CLOCK6= StandardImage("")
+    #CLOCK5= StandardImage("")
+    #CLOCK4= StandardImage("")
+    #CLOCK3= StandardImage("")
+    #CLOCK2= StandardImage("")
+    #CLOCK1= StandardImage("")
+    #ARROW_N= StandardImage("")
+    #ARROW_NE= StandardImage("")
+    #ARROW_E= StandardImage("")
+    #ARROW_SE= StandardImage("")
+    #ARROW_S= StandardImage("")
+    #ARROW_SW= StandardImage("")
+    #ARROW_W= StandardImage("")
+    #ARROW_NW= StandardImage("")
 
 class MicroBit():
     def __init__(self, repl):
@@ -192,6 +192,6 @@ class MicroBit():
     pin0          = TouchPin("pin0")
     pin1          = TouchPin("pin1")
     pin2          = TouchPin("pin2")
-    Image         = StandardImages()
+    ##TODO: Image         = StandardImages()
 
 # END
