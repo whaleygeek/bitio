@@ -167,21 +167,23 @@ microbit-gateway project for linking via the micro:bit radio network, amongst ot
 
 I also have a microbit.GPIO idea in the making, where it could be used a bit like RPi.GPIO.
 
-## Work in Progress
 
-I am currently experimenting with ideas to allow the use of all standard images,
-and any user images, in the same way that the micro:bit MicroPython supports them.
+## TODO list
 
-e.g. microbit.display.show(Image.SMILE)
+* Make the messages more friendly when connecting ("can't find cache file") is a bit
+unfriendly. Make them more micro:bit specific.
 
-e.g. i = Image("90909...")
-microbit.display.show(i)
+* Make sure it says 'your micro:bit is connected' when it successfully finds the
+micro:bit
+
+* Perhaps catch the exception if the micro:bit is not there and display a more friendly
+error message with some advice, rather than an exception dump.
 
 David Whale
 
 @whaleygeek
 
-9th June 2017
+27th June 2017
 
 
 
