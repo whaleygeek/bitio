@@ -71,6 +71,8 @@ button.py  - sense a button press
 counter.py - count from 00 to 99
 sensing.py - sense buttons and accelerometer values
 touched.py - sense pin touch
+std_image.py - use in-built standard images
+custom_image.py - define your own custom images
 ```
 
 Not all of the features of the micro:bit are made available via this
@@ -161,23 +163,18 @@ micro:bit.
 
 ## What is next?
 
-I have a big todo list (look in the docs folder). One key thing I want to do is to pull all
-my various micro:bit comms projects into this single package, including bringing in the
-microbit-gateway project for linking via the micro:bit radio network, amongst other features.
+I have a big todo list (look in the docs folder). 
 
-I also have a microbit.GPIO idea in the making, where it could be used a bit like RPi.GPIO.
+One key thing I want to do is to pull all my various micro:bit comms projects into this single package, 
+including bringing in the microbit-gateway project for linking via the micro:bit radio network, amongst other features.
 
+I think this work will also add a radio configuration feature with assistance at the
+micro:bit end, so that it is possible to build multi channel frequency hopping gateways.
+That is a bit of a long term plan at the moment though.
 
-## TODO list
+I also have a microbit.GPIO idea in the making, where it could be used a bit like RPi.GPIO
+and form part of my anyio package as another supported platform.
 
-* Make the messages more friendly when connecting ("can't find cache file") is a bit
-unfriendly. Make them more micro:bit specific.
-
-* Make sure it says 'your micro:bit is connected' when it successfully finds the
-micro:bit
-
-* Perhaps catch the exception if the micro:bit is not there and display a more friendly
-error message with some advice, rather than an exception dump.
 
 David Whale
 

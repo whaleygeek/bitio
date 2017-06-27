@@ -1,6 +1,19 @@
 --------------------------------------------------------------------------------
 TODO
 
+* Make the messages more friendly when connecting ("can't find cache file") is a bit
+unfriendly. Make them more micro:bit specific.
+
+* Make sure it says 'your micro:bit is connected' when it successfully finds the
+micro:bit
+
+* Perhaps catch the exception if the micro:bit is not there and display a more friendly
+error message with some advice, rather than an exception dump.
+
+
+--------------------------------------------------------------------------------
+TODO
+
 Possible use cases
 
 It might have multiple forms:
