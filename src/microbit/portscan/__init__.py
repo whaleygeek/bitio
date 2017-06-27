@@ -178,7 +178,7 @@ def getName():
     f.close()
     return name  
   except IOError:
-    message("could not open cache file")
+    message("No device has previously been detected")
     return None
 
 def main():
