@@ -109,6 +109,11 @@ class MicroBit():
         def __init__(self, name):
             self.name = name
 
+        def scroll(self, s):
+            if not isinstance(s, str):
+                raise RuntimeError("display.scroll needs a str")
+            self.parent.cmd("%s.scroll(\"%s\")" % (self.name, s))
+
         def show(self, v):
             if isinstance(v, MicroBit.StandardImage):
                 self.parent.cmd("%s.show(Image.%s)" % (self.name, v.name))
