@@ -6,6 +6,8 @@
 # TODO: for analog pins: analog_write, analog_read
 # TODO: lots of other API methods that need implementing.
 
+import time
+
 # NOTE: we have defined MicroBit as a class, so that it is possible later to
 # have more than one micro:bit connected, perhaps with independent state
 # such as the state of the REPL.
@@ -133,6 +135,9 @@ class MicroBit():
 
         def clear(self):
             self.parent.cmd("%s.clear()" % self.name)
+
+    def sleep(self, ms):
+        time.sleep(float(ms)/1000)
 
     button_a      = Button('button_a')
     button_b      = Button('button_b')
