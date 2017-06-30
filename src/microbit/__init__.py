@@ -9,8 +9,16 @@ def trace(msg):
     if DEBUG:
         print(str(msg))
 
+def warn(msg):
+    print("warning:%s" % str(msg))
+
 def info(msg):
     print(msg)
+
+def fail(msg):
+    print("error:%s" % str(msg))
+    import sys
+    sys.exit(-1)
 
 
 #----- IMPORTS ----------------------------------------------------------------
@@ -37,8 +45,10 @@ trace("Using path:%s" % str(SERIAL_PATH))
 if SERIAL_PATH not in sys.path:
     sys.path.append(SERIAL_PATH)
 
-import serial
-#TODO: Might want to catch ImportError here and offer friendly advice on how to fix?
+try:
+    import serial
+except ImportError:
+    fail("I can't find pyserial on your system. That's odd, it should be included in this project")
 
 
 #----- PORTSCAN ---------------------------------------------------------------
@@ -54,7 +64,7 @@ if name != None:
 else:
     name = portscan.find()
     if name == None:
-        raise RuntimeError("No port selected, giving in")
+        fail("No port selected, giving in")
     PORT = name
 
 
@@ -76,11 +86,19 @@ def get_serial():
 
 info("connecting...")
 trace("getting active serial port connection to micro:bit")
-s = get_serial()
 
-#TODO: want something other than an exception dump here if it fails
-#need the option to show a message and just stop the program,
-#or throw an exception (perhaps a configurable option)
+while True:
+    try:
+        s = get_serial()
+        break # got a valid connection
+    except Exception as e:
+        warn("Could not open the serial port that was remembered from last time")
+        portscan.forget()
+        name = portscan.find()
+        if name == None:
+            fail("Still can't find a port, giving in")
+        PORT = name
+        # go round again and try and open serial port
 
 
 #----- GET RAW REPL -----------------------------------------------------------
@@ -91,10 +109,6 @@ repl = repl.REPL(s)
 
 trace("entering raw repl mode")
 repl.to_raw()
-
-#print("Trying to send a command")
-#repl.send_command("print('hello')")
-#print(repl.wait_response())
 
 
 #----- CREATE MICROBIT ABSTRACTION --------------------------------------------
@@ -114,10 +128,8 @@ microbit = api.MicroBit(repl)
 me = sys.modules[__name__]
 sys.modules[__name__] = microbit
 
-
 info("Your micro:bit has been detected")
 info("Now running your program")
-
 
 
 # END

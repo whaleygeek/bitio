@@ -99,6 +99,7 @@ class REPL():
         if not self.wait_prompt():
             ##print("**** SENDING CTRL-C to force a prompt")
             self.ctrl_c() # try to stop running user program
+            self.ctrl_b() # also if already at raw REPL, trigger exit from it
             ##print("**** waiting for prompt response")
             if not self.wait_prompt():
                 raise REPLException("could not get a prompt")
