@@ -52,15 +52,19 @@ The bitio logo will appear on the display to show you that it has
 loaded correctly.
 
 Run (in Python 2 or Python 3, both are supported) the counter.py example 
+from the command prompt on Windows (command prompt on Mac/Linux/Pi)
 like this:
 
 ```
+cd src
 python counter.py
 ```
 
 Follow the on screen instructions which will walk you through unplugging and
 plugging back in the micro:bit, as a way to detect which serial port it is
 connected to on your computer.
+
+![connecting](connect.png)
 
 Finally, you should get a counter counting from 00 to 99 in the WhaleySans font
 (2x5 sized digits) on the display.
