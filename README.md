@@ -1,4 +1,4 @@
-# bitio A Micro:bit IO device
+# bitio - A Micro:bit IO device
 
 ## What is this?
 
@@ -6,6 +6,8 @@ bitio (pronounced bitty-o) is a micro:bit I/O library for Python.
 It allows you to run code in Python on a PC/Mac/Linux/Raspberry Pi
 and interact directly with the micro:bit. It works with both Python 2 and
 with Python 3 on Mac, PC, Raspberry Pi and Linux.
+
+![bitio logo](bitio.png)
 
 ## Where is the latest version?
 
