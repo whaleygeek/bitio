@@ -51,6 +51,18 @@ it onto the MICROBIT drive that appears when you plug in your micro:bit.
 The bitio logo will appear on the display to show you that it has
 loaded correctly.
 
+If you are on Windows, unfortunately you need to install the mbed serial driver
+first before you can use the serial port on your micro:bit. You don't need to
+do this on Mac/Pi/Linux as they have a compatible driver already built into the OS.
+Note that you need admin access to your PC and the micro:bit must be plugged in
+when you install the driver for it to work (but it says that on the web page
+linked below)
+
+For windows, follow these instructions:
+
+[serial driver setup for Windows](https://support.microbit.org/solution/articles/19000022103-how-do-i-use-the-serial-port-with-a-micro-bit-on-windows)
+
+
 Run (in Python 2 or Python 3, both are supported) the counter.py example 
 from the command prompt on Windows (use Terminal on Mac/Linux/Pi),
 or you can even open counter.py inside the IDLE editor and just
