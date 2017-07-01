@@ -52,7 +52,7 @@ The bitio logo will appear on the display to show you that it has
 loaded correctly.
 
 Run (in Python 2 or Python 3, both are supported) the counter.py example 
-from the command prompt on Windows (command prompt on Mac/Linux/Pi)
+from the command prompt on Windows (use Terminal on Mac/Linux/Pi)
 like this:
 
 ```
