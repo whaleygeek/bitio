@@ -3,8 +3,8 @@
 import microbit
 import time
 
-SQUARE = microbit.Image("99999:90009:90009:90009:99999")
-microbit.display.show(SQUARE)
+BANANA = microbit.Image("00090:00090:00990:09900:99000")
+microbit.display.show(BANANA)
 time.sleep(4)
 
 # END
