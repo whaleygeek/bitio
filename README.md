@@ -5,7 +5,7 @@
 bitio (pronounced bitty-o) is a micro:bit I/O library for Python.
 It allows you to run code in Python on a PC/Mac/Linux/Raspberry Pi
 and interact directly with the micro:bit. It works with both Python 2 and
-with Python 3.
+with Python 3 on Mac, PC, Raspberry Pi and Linux.
 
 ## Where is the latest version?
 
@@ -23,7 +23,7 @@ go right to the author's website and get the latest code from here:
 
 ## What can I do with it?
 
-This is useful if you want to use the micro:bit as an input or an output
+This package is useful if you want to use the micro:bit as an input or an output
 device for other programs, e.g. for Minecraft. Tilt your micro:bit, and
 something happens in the Minecraft world. It can be used for anything
 though, where you want to use the input and output devices on the micro:bit
@@ -45,7 +45,9 @@ choose DOWNLOAD ZIP
 Unzip the zip file
 
 Flash the bitio.hex file onto your micro:bit by dragging and dropping
-it onto the MICROBIT drive that appears when you plug in your micro:bit
+it onto the MICROBIT drive that appears when you plug in your micro:bit.
+The bitio logo will appear on the display to show you that it has
+loaded correctly.
 
 Run (in Python 2 or Python 3, both are supported) the counter.py example 
 like this:
@@ -180,7 +182,7 @@ David Whale
 
 @whaleygeek
 
-27th June 2017
+1st July 2017
 
 
 
