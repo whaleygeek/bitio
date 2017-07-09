@@ -1,16 +1,18 @@
-import mcpi.minecraft as minecraft
 import microbit
-
-mc = minecraft.Minecraft.create()
+import time
 
 while True:
-    pos = mc.player.getTilePos()
-    x = microbit.accelerometer.get_x()/300
-    y = microbit.accelerometer.get_y()/300
+    x = microbit.accelerometer.get_x()
+    y = microbit.accelerometer.get_y()
 
-    pos.x += x
-    pos.y += y
+    if x < -300:
+        print("left")
+    elif x > 300:
+        print("right")
 
-    mc.player.setTilePos(x, y, pos.z)
+    if y < -300:
+        print("forward")
+    elif y > 300:
+        print("backward")
 
     time.sleep(0.5)
