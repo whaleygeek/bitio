@@ -12,6 +12,6 @@ while True:
     pos.x += x
     pos.y += y
 
-    mc.player.setTilePos(x, y, pos.z)
+    mc.player.setTilePos(pos.x, pos.y, pos.z)
 
     time.sleep(0.5)
