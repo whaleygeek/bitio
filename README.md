@@ -16,12 +16,12 @@ childrens coding book 'Adventures in Minecraft'.
 
 You can get the official version of the library that supports the book from here:
 
-[Official version](https://github.com/AdventuresInMinecraft/bitio)
+[Official version - on Adventures in Minecraft site](https://github.com/AdventuresInMinecraft/bitio)
 
 If you want something a bit more leading edge with some experimental new features,
 go right to the author's website and get the latest code from here:
 
-[Development version](https://github.com/whaleygeek/bitio)
+[Development version - on whaleygeek site](https://github.com/whaleygeek/bitio)
 
 ## What can I do with it?
 
@@ -31,14 +31,19 @@ something happens in the Minecraft world. It can be used for anything
 though, where you want to use the input and output devices on the micro:bit
 inside a Python program on a bigger computer.
 
-[Micro:bit](https://microbit.org)
+[About the Micro:bit](https://microbit.org)
 
-[MicroPython](https://python.microbit.org)
+[About MicroPython](https://python.microbit.org)
 
-[Minecraft](https://minecraft.net)
+[About Minecraft](https://minecraft.net)
 
 
 ## Getting Started
+
+There are a number of ways you could get bitio installed, however this route is
+designed to be mostly 'install free', specifically to make it easy for 
+schools to use the package where there is a mostly locked-down Python
+environment.
 
 Press CLONE OR DOWNLOAD
 
@@ -51,7 +56,14 @@ it onto the MICROBIT drive that appears when you plug in your micro:bit.
 The bitio logo will appear on the display to show you that it has
 loaded correctly.
 
-If you are on Windows, unfortunately you need to install the mbed serial driver
+The best way to use the package in a restricted school environment is to
+then just copy the 'microbit' folder into the students home folder.
+Any Python programs that they write and store in their home folder will
+now automatically find the 'microbit' package when they 'import microbit'
+from any of their Python programs.
+
+
+If you are on Windows, you first need to install the mbed serial driver
 first before you can use the serial port on your micro:bit. You don't need to
 do this on Mac/Pi/Linux as they have a compatible driver already built into the OS.
 Note that you need admin access to your PC and the micro:bit must be plugged in
@@ -60,18 +72,16 @@ linked below)
 
 For windows, follow these instructions:
 
-[serial driver setup for Windows](https://support.microbit.org/solution/articles/19000022103-how-do-i-use-the-serial-port-with-a-micro-bit-on-windows)
+[How to install the Windows mbed serial driver](https://support.microbit.org/solution/articles/19000022103-how-do-i-use-the-serial-port-with-a-micro-bit-on-windows)
 
+## Making a connection
 
-Run (in Python 2 or Python 3, both are supported) the counter.py example 
-from the command prompt on Windows (use Terminal on Mac/Linux/Pi),
-or you can even open counter.py inside the IDLE editor and just
-run it from there.
+Run (in Python 2 or Python 3, both are supported) the counter.py example
+that is in the src folder.
 
-```
-cd src
-python counter.py
-```
+You could run this from the command prompt if you know how. But it is
+also just as easy to open counter.py from within the IDLE editor
+and run it, and it should work fine.
 
 Follow the on screen instructions which will walk you through unplugging and
 plugging back in the micro:bit, as a way to detect which serial port it is
@@ -94,6 +104,8 @@ sensing.py - sense buttons and accelerometer values
 touched.py - sense pin touch
 std_image.py - use in-built standard images
 custom_image.py - define your own custom images
+tilt.py - show how to sense tilt movements
+tilt_mc.py - use the tilt with Minecraft
 ```
 
 Not all of the features of the micro:bit are made available via this
@@ -101,6 +113,7 @@ API yet, but we're working on it!
 
 ## MicroPython
 
+The bitio code that runs at the micro:bit end is MicroPython.
 The version of MicroPython cached inside this project is from here:
 
 [MicroPython](https://codewith.mu/help/0.9.13/)
