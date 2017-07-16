@@ -106,6 +106,8 @@ std_image.py - use in-built standard images
 custom_image.py - define your own custom images
 tilt.py - show how to sense tilt movements
 tilt_mc.py - use the tilt with Minecraft
+clocks.py - show a spinning clock
+arrows.py - show a spinning arrow
 ```
 
 Not all of the features of the micro:bit are made available via this
