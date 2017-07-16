@@ -2,6 +2,8 @@
 
 #----- CONFIG -----------------------------------------------------------------
 
+##DEVICE_NAME = "whaleygeek's awesome microbit"
+DEVICE_NAME = "micro:bit"
 DEBUG = False
 BAUD = 115200
 
@@ -56,7 +58,7 @@ except ImportError:
 # reuse or scan for a new port
 trace("will reuse cache or scan for new port")
 
-name = portscan.getName()
+name = portscan.getName(DEVICE_NAME)
 if name != None:
     if DEBUG:
         trace("Using port:" + name)
@@ -85,7 +87,7 @@ def get_serial():
     return s
 
 info("connecting...")
-trace("getting active serial port connection to micro:bit")
+trace("getting active serial port connection to %s" % DEVICE_NAME)
 
 while True:
     try:
@@ -94,7 +96,7 @@ while True:
     except Exception as e:
         warn("Could not open the serial port that was remembered from last time")
         portscan.forget()
-        name = portscan.find()
+        name = portscan.find(DEVICE_NAME)
         if name == None:
             fail("Still can't find a port, giving in")
         PORT = name
@@ -128,7 +130,7 @@ microbit = api.MicroBit(repl)
 me = sys.modules[__name__]
 sys.modules[__name__] = microbit
 
-info("Your micro:bit has been detected")
+info("Your %s has been detected" % DEVICE_NAME)
 info("Now running your program")
 
 
