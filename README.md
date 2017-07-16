@@ -87,7 +87,22 @@ Follow the on screen instructions which will walk you through unplugging and
 plugging back in the micro:bit, as a way to detect which serial port it is
 connected to on your computer.
 
-![connecting](connect.png)
+```
+connecting...
+warning:Could not open the serial port that was remembered from last time
+Scanning for serial ports
+remove micro:bit, then press ENTER
+scanning...
+found 132 micro:bit(s)
+plug in micro:bit, then press ENTER
+scanning...
+found 133 micro:bit(s)
+found 1 new micro:bit
+selected:/dev/tty.usbmodem1422
+Do you want this micro:bit to be remembered? (Y/N)y
+Your micro:bit has been detected
+Now running your program
+```
 
 Finally, you should get a counter counting from 00 to 99 in the WhaleySans font
 (2x5 sized digits) on the display.
