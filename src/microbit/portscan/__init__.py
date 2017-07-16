@@ -7,6 +7,8 @@ import time
 
 # CONFIGURATION ========================================================
 
+DEFAULT_DEVICE_NAME = "device"
+
 # The file that will be created to cache the found port name
 CACHE_NAME = "portscan.cache"
 
@@ -86,34 +88,37 @@ def getAdded(before, after):
   
 # BODY =================================================================
 
-def scan():
+def scan(device_name=None):
   """ scan devices repeatedly until new one found, or user gives in """
+  if device_name is None:
+    device_name = DEFAULT_DEVICE_NAME
+
   message("Scanning for serial ports")
   while True:
     # prompt to remove device
-    ask("remove device, then press ENTER")
+    ask("remove %s, then press ENTER" % device_name)
 
     message("scanning...")
     time.sleep(DRIVER_UNLOAD_TIME) # to allow driver to unload
     before = ports.scan()
     beforec = len(before)
-    message("found " + str(beforec) + " devices")
+    message("found " + str(beforec) + " %s(s)" % device_name)
 
     # prompt to insert device
-    ask("plug in device, then press ENTER")
+    ask("plug in %s, then press ENTER" % device_name)
 
     message("scanning...")
     time.sleep(DRIVER_LOAD_TIME) # to allow driver to load
     after = ports.scan()
     afterc = len(after)
-    message("found " + str(afterc) + " devices")
+    message("found " + str(afterc) + " %s(s)" % device_name)
 
     # diff the lists
     added = getAdded(before, after)
     
     if len(added) == 0:
       # No new ones, try again?
-      message("no new devices detected")
+      message("no new %ss detected" % device_name)
       yes = getYesNo("Try again?")
       if yes:
         continue
@@ -122,10 +127,10 @@ def scan():
     elif len(added) > 1:
       # Show a menu and get a choice
       while True:
-        message("more than one new device found")
+        message("more than one new %s found" % device_name)
         for i in range(len(added)):
           message(str(i+1) + ":" + added[i])
-        a = ask("which device do you want to try?")
+        a = ask("which %s do you want to try?" % device_name)
         try:
           a = int(a)
           if a < 1 or a > len(added):
@@ -138,16 +143,18 @@ def scan():
 
     else: 
       # only 1 new, select it
-      message("found 1 new device")
+      message("found 1 new %s" % device_name)
       dev = added[0]
       message("selected:" + dev)
       return dev
       
     
-def remember(device):
+def remember(device, device_name=None):
   """ Remember this device for next time """
   # prompt if you want it remembered
-  yes = getYesNo("Do you want this device to be remembered?")
+  if device_name is None:
+    device_name = DEFAULT_DEVICE_NAME
+  yes = getYesNo("Do you want this %s to be remembered?" % device_name)
 
   if yes:
     # Remember it
@@ -155,11 +162,13 @@ def remember(device):
     f.write(device + "\n")
     f.close()
 
-def find():
+def find(device_name=None):
   """ Try to find a newly inserted device, by prompting user """
-  dev = scan()
+  if device_name is None:
+    device_name = DEFAULT_DEVICE_NAME
+  dev = scan(device_name)
   if dev != None:
-    remember(dev)
+    remember(dev, device_name)
   return dev
   
 def forget():
@@ -170,23 +179,26 @@ def forget():
   except:
     pass
   
-def getName():
+def getName(device_name=None):
   """read the remembered cached named, None if none stored"""
+  if device_name is None:
+    device_name = DEFAULT_DEVICE_NAME
   try:
     f = open(CACHE_NAME, "r")
     name = f.readline().strip()
     f.close()
     return name  
   except IOError:
-    message("No device has previously been detected")
+    message("No %s has previously been detected" % device_name)
     return None
 
 def main():
+  device_name = DEFAULT_DEVICE_NAME
   message("*" * 79)
   message("SERIAL PORT SCANNER PROGRAM")
   message("*" * 79)
   
-  n = getName()
+  n = getName(device_name)
   if n == None:
     message("No name remembered")
   else:
@@ -194,11 +206,11 @@ def main():
     message("forgetting...")
     forget()
     
-  d = find()
+  d = find(device_name)
   if d == None:
     message("nothing found")
   else:
-    message("found device:" + d)
+    message("found %s %s:" % (device_name, d))
 
 # TESTER  
 if __name__ == "__main__":
