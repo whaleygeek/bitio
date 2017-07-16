@@ -152,10 +152,23 @@ class MicroBit():
     pin1          = TouchPin("pin1")
     pin2          = TouchPin("pin2")
 
+    # Dynamically build attributes in Image for every standard image
     for image_name in Image.STD_IMAGE_NAMES:
         i = StandardImage(image_name)
         setattr(Image, image_name, i)
         Image.STD_IMAGES.append(i)
+
+    # Dynamically build Image.ALL_CLOCKS now Image.CLOCK* is defined
+    Image.ALL_CLOCKS = [
+        Image.CLOCK1, Image.CLOCK2, Image.CLOCK3, Image.CLOCK4, Image.CLOCK5, Image.CLOCK6,
+        Image.CLOCK7, Image.CLOCK8, Image.CLOCK9, Image.CLOCK10, Image.CLOCK11, Image.CLOCK12
+    ]
+
+    # Dynamically build Image.ALL_ARROWS
+    Image.ALL_ARROWS = [
+        Image.ARROW_N, Image.ARROW_NE, Image.ARROW_E, Image.ARROW_SE,
+        Image.ARROW_S, Image.ARROW_SW, Image.ARROW_W, Image.ARROW_NW
+    ]
 
 
 # END
