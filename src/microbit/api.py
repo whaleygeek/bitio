@@ -160,8 +160,8 @@ class MicroBit():
 
     # Dynamically build Image.ALL_CLOCKS now Image.CLOCK* is defined
     Image.ALL_CLOCKS = [
-        Image.CLOCK1, Image.CLOCK2, Image.CLOCK3, Image.CLOCK4, Image.CLOCK5, Image.CLOCK6,
-        Image.CLOCK7, Image.CLOCK8, Image.CLOCK9, Image.CLOCK10, Image.CLOCK11, Image.CLOCK12
+        Image.CLOCK12, Image.CLOCK1, Image.CLOCK2, Image.CLOCK3, Image.CLOCK4, Image.CLOCK5, 
+        Image.CLOCK6, Image.CLOCK7, Image.CLOCK8, Image.CLOCK9, Image.CLOCK10, Image.CLOCK11
     ]
 
     # Dynamically build Image.ALL_ARROWS
