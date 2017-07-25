@@ -1,5 +1,7 @@
 # __init__.py
 
+import sys
+
 #----- CONFIG -----------------------------------------------------------------
 
 ##DEVICE_NAME = "whaleygeek's awesome microbit"
@@ -22,6 +24,9 @@ def fail(msg):
     import sys
     sys.exit(-1)
 
+# Allow user to set debug flag on command line
+if 'debug' in sys.argv:
+    DEBUG = True
 
 #----- IMPORTS ----------------------------------------------------------------
 
@@ -42,16 +47,28 @@ except ImportError:
 
 import sys, os
 
-SERIAL_PATH = os.path.dirname(__file__) #TODO: or abspath??
+SERIAL_PATH = os.path.dirname(os.path.abspath(__file__))
 trace("Using path:%s" % str(SERIAL_PATH))
 if SERIAL_PATH not in sys.path:
-    sys.path.append(SERIAL_PATH)
+    sys.path.insert(0, SERIAL_PATH)
 
 try:
     import serial
-except ImportError:
-    fail("I can't find pyserial on your system. That's odd, it should be included in this project")
+except ImportError as e:
+    info("Can't find pyserial on your system")
+    if DEBUG:
+        trace(str(e))
+        import traceback
+        ex_type, ex, tb = sys.exc_info()
+        traceback.print_tb(tb)
+        trace(sys.path)
 
+    fail("That's odd, it should be included in this project")
+
+if hasattr(serial, "BITIO"):
+    trace("Yay, I loaded the BITIO packaged pyserial")
+else:
+    warn("I got the system installed pyserial, that was unexpected")
 
 #----- PORTSCAN ---------------------------------------------------------------
 

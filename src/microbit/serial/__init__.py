@@ -13,6 +13,7 @@ import importlib
 from serial.serialutil import *
 #~ SerialBase, SerialException, to_bytes, iterbytes
 
+BITIO = True # something to allow bitio to detect we have loaded the correct module
 __version__ = '3.3'
 
 VERSION = __version__
