@@ -1,6 +1,36 @@
 --------------------------------------------------------------------------------
 TODO
 
+
+These items are currently not implemented in this release, but will be added soon.
+
+pin[3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+digital_read()
+digital_write()
+analog_read()
+analog_write()
+set_pull()
+
+
+--------------------------------------------------------------------------------
+TODO - later on, will need a more complete display implementation.
+
+microbit.display.
+  show(iterable, delay=400, *, wait=True, loop=False, clear=False)
+  clear()
+  scroll(string, delay=150, *, wait=True, loop=False, monospace=False)
+  show(image)
+
+  get_pixel(x, y)
+  set_pixel(x, y, value)
+  on()
+  off()
+  is_on()
+
+
+--------------------------------------------------------------------------------
+TODO
+
 * Perhaps catch the exception if the micro:bit is not there and display a more friendly
 error message with some advice, rather than an exception dump.
 
@@ -107,6 +137,7 @@ discovering - i.e. whatever you put, it tries to run it on the micro:bit
 with a sensible text rendering, and if an error comes back it passes
 that error back (thus it will be very thin and generic)
 
+
 --------------------------------------------------------------------------------
 TODO
 
@@ -128,23 +159,6 @@ Implement the auto detect and auto load logic as per spec.txt
 ================================================================================
 
 
---------------------------------------------------------------------------------
-TODO - later on, will need a more complete display implementation.
-
-- display.show(number)  (single digits for now are fine, add fonts later)
-
-
-microbit.display.
-  show(iterable, delay=400, *, wait=True, loop=False, clear=False)
-  clear()
-  scroll(string, delay=150, *, wait=True, loop=False, monospace=False)
-  show(image)
-
-  get_pixel(x, y)
-  set_pixel(x, y, value)
-  on()
-  off()
-  is_on()
 
 
 ================================================================================
