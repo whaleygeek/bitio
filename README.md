@@ -37,6 +37,13 @@ inside a Python program on a bigger computer.
 
 [About Minecraft](https://minecraft.net)
 
+# Show me some projects!
+
+Mr NCSComputing has written up a lot of projects using bitio and minecraft
+together here: 
+
+[Bitio with Minecraft](http://warksjammy.blogspot.co.uk/2017/07/bitio-blogs-in-one-place.html?view=timeslide)
+
 
 # Getting Started
 
