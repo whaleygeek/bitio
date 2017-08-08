@@ -23,6 +23,11 @@ go right to the author's website and get the latest code from here:
 
 [Development version - on whaleygeek site](https://github.com/whaleygeek/bitio)
 
+It will soon be added to pypi, so very soon you will be able to do:
+```pip install bitio```
+or
+```pip3 install bitio```
+
 ## What can I do with it?
 
 This package is useful if you want to use the micro:bit as an input or an output
