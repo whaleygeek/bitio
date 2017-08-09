@@ -12,6 +12,17 @@ analog_write()
 set_pull()
 
 
+------------------------------------------------------------------------------
+TODO
+
+gestures - these are quite hard to do, because MicroPython has no threading
+and it processes the gestures cooperatively - this means you have to
+call the get_gesture() method regularly in a tight loop for it to
+detect the gesture correctly. Because bitio only polls the micro:bit
+when your host python program want's something, shake detection is a bit
+hit and miss at the moment
+
+
 --------------------------------------------------------------------------------
 TODO - later on, will need a more complete display implementation.
 
