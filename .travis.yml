@@ -10,7 +10,7 @@ python:
 cache: pip3
 sudo: false
 
-script: python setup.py bdist
+script: python setup.py test
 
 deploy:
   provider: pypi
