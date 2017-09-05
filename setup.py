@@ -3,8 +3,9 @@ from distutils.core import setup
 setup(
     name='bitio',
     version='0.1',
-    packages=['src.microbit', 'src.microbit.repl', 'src.microbit.serial', 'src.microbit.serial.tools',
-              'src.microbit.serial.threaded', 'src.microbit.serial.urlhandler', 'src.microbit.portscan'],
+    packages=['bitio', 'bitio.try', 'bitio.microbit', 'bitio.microbit.repl', 'bitio.microbit.serial',
+              'bitio.microbit.serial.tools', 'bitio.microbit.serial.threaded', 'bitio.microbit.serial.urlhandler',
+              'bitio.microbit.portscan'],
     url='https://github.com/whaleygeek/bitio',
     license='',
     author='David Whale',
