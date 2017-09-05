@@ -19,3 +19,4 @@ deploy:
   password:
   on:
     tags: true
+    branch: master
