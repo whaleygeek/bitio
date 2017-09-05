@@ -1,16 +1,21 @@
 
 language: python
 python:
+  - "2.7"
   - "3.3"
   - "3.4"
   - "3.5"
   - "3.5-dev" # 3.5 development branch
   - "nightly" # currently points to 3.6-dev
-# command to install dependencies
-install: "pip3 install -r requirements.txt"
-# command to run tests
-script: 
-  - python3 -m "nose" --with-coverage --cover-xml
-  - codeclimate-test-reporter
 cache: pip3
 sudo: false
+
+script: python setup.py bdist
+
+deploy:
+  provider: pypi
+  # https://docs.travis-ci.com/user/deployment/pypi
+  user: david-needs-to-fill-this-in
+  password:
+  on:
+    tags: true
