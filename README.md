@@ -252,7 +252,15 @@ micro:bit again and this will overwrite whatever is on the micro:bit screen.
             print("Not Tilted")
         microbit.sleep(500)
 ```
-  
+
+## Reading the temperature
+
+```
+    import microbit
+    while True:  
+        print(microbit.temperature())
+        microbit.sleep(500)
+```
 
 # TODO ITEMS
 

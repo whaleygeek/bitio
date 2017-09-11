@@ -144,6 +144,12 @@ class MicroBit():
     def sleep(self, ms):
         time.sleep(float(ms)/1000)
 
+    def temperature(self):
+        r = self.cmd("print(temperature())")
+        r = int(r)
+        return r
+
+
     button_a      = Button('button_a')
     button_b      = Button('button_b')
     accelerometer = Accelerometer("accelerometer")
