@@ -44,10 +44,20 @@ inside a Python program on a bigger computer.
 
 # Show me some projects!
 
-Mr NCSComputing has written up a lot of projects using bitio and minecraft
-together here: 
+Mr NCSComputing (Chris Penn) has written up a lot of projects using bitio and minecraft
+together: 
 
 [Bitio with Minecraft](http://warksjammy.blogspot.co.uk/2017/07/bitio-blogs-in-one-place.html?view=timeslide)
+
+Sean M. Tracey has written a NodeRed wrapper for it:
+
+[NodeRed](https://flows.nodered.org/node/node-red-contrib-bitio-wrapper)
+
+Giles Booth has built an internet controlled Radio with it:
+[Internet Radio](http://www.suppertime.co.uk/blogmywiki/2017/08/microbit-controlled-radio/)
+
+Dr Simon Monk wrote about BitIO in his new MicroPython book:
+[Dr Simon Monk](https://www.amazon.com/Programming-BBC-micro-Getting-MicroPython/dp/1260117588)
 
 
 # Getting Started
