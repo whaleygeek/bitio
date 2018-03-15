@@ -44,7 +44,7 @@ News Flash! EduBlocks now has support for bitio!!
 
 Josh from EduBlocks added bitio support, after we met at PyconUK 2017.
 
-[Edublocks and bitio](https://edublocks.org/)]
+[Edublocks and bitio](https://edublocks.org/)
 
 Mr NCSComputing (Chris Penn) has written up a lot of projects using bitio and minecraft
 together: 
