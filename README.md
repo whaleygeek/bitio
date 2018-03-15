@@ -40,6 +40,12 @@ inside a Python program on a bigger computer.
 
 # Show me some projects!
 
+News Flash! EduBlocks now has support for bitio!!
+
+Josh from EduBlocks added bitio support, after we met at PyconUK 2017.
+
+[Edublocks and bitio](https://edublocks.org/)]
+
 Mr NCSComputing (Chris Penn) has written up a lot of projects using bitio and minecraft
 together: 
 
