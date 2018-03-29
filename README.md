@@ -23,10 +23,6 @@ go right to the author's website and get the latest code from here:
 
 [Development version - on whaleygeek site](https://github.com/whaleygeek/bitio)
 
-It will soon be added to pypi, so very soon you will be able to do:
-```pip install bitio```
-or
-```pip3 install bitio```
 
 ## What can I do with it?
 
@@ -44,10 +40,33 @@ inside a Python program on a bigger computer.
 
 # Show me some projects!
 
-Mr NCSComputing has written up a lot of projects using bitio and minecraft
-together here: 
+News Flash! EduBlocks now has support for bitio!!
+
+Josh from EduBlocks added bitio support, after we met at PyconUK 2017.
+
+[Edublocks and bitio](https://edublocks.org/)
+
+Mr NCSComputing (Chris Penn) has written up a lot of projects using bitio and minecraft
+together: 
 
 [Bitio with Minecraft](http://warksjammy.blogspot.co.uk/2017/07/bitio-blogs-in-one-place.html?view=timeslide)
+
+Sean M. Tracey has written a NodeRed wrapper for it:
+
+[NodeRed](https://flows.nodered.org/node/node-red-contrib-bitio-wrapper)
+
+Giles Booth has built an internet controlled Radio with it:
+
+[Internet Radio](http://www.suppertime.co.uk/blogmywiki/2017/08/microbit-controlled-radio/)
+
+Dr Simon Monk wrote about BitIO in his new MicroPython book:
+
+[Dr Simon Monk](https://www.amazon.com/Programming-BBC-micro-Getting-MicroPython/dp/1260117588)
+
+And of course, David Whale added a chapter to the book Adventures in Minecraft all about
+micro:bit and it uses bitio:
+
+[Adventures in Minecraft](https://www.amazon.co.uk/Adventures-Minecraft-David-Whale/dp/1119439582)
 
 
 # Getting Started
