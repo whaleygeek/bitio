@@ -22,6 +22,7 @@ class MicroBit():
         self.pin0.parent          = self
         self.pin1.parent          = self
         self.pin2.parent          = self
+        self.radio.parent         = self
 
     def cmd(self, command):
         ##print("send:%s" % command)
@@ -105,6 +106,36 @@ class MicroBit():
         def __str__(self):
             return self.bitmap_str
 
+    class Radio():
+        def __init__(self, name):
+            self.name = name
+
+        def on(self):
+            self.parent.cmd("import radio")
+            self.parent.cmd("%s.on()" % (self.name))
+
+        def config(self, **kwargs):
+            self.parent.cmd("import radio")
+            kwargs_str = ', '.join('%s=%r' % x for x in kwargs.items())
+            print(kwargs_str)
+            self.parent.cmd("%s.config(%s)" % (self.name, kwargs_str))
+
+        def off(self):
+            self.parent.cmd("%s.off()" % (self.name))
+
+        def send(self, message):
+            self.parent.cmd("%s.send(\"%s\")" % (self.name, message))
+
+        def receive(self):
+            return self.parent.cmd("print(%s.receive())" % (self.name))
+
+        def receive_bytes(self):
+            data = self.parent.cmd("print(%s.receive_bytes())" % (self.name))
+            return data
+        
+        def reset(self):
+            self.parent.cmd("%s.reset()" % (self.name))
+
     class Display():
         def __init__(self, name):
             self.name = name
@@ -157,6 +188,7 @@ class MicroBit():
     pin0          = TouchPin("pin0")
     pin1          = TouchPin("pin1")
     pin2          = TouchPin("pin2")
+    radio         = Radio("radio")
 
     # Dynamically build attributes in Image for every standard image
     for image_name in Image.STD_IMAGE_NAMES:
