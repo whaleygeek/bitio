@@ -9,6 +9,17 @@ with Python 3 on Mac, PC, Raspberry Pi and Linux.
 
 ![bitio logo](bitio.png)
 
+## NEWSFLASH - using with a V1.5 micro:bit
+
+If you have a V1.5 micro:bit, a new sensor was fitted for the accelerometer and compass.
+This requires new hardware drivers in order to work.
+
+A very quick fix for this is to drag the bitio.hex file inside this repository
+into https://python.microbit.org then press the DOWNLOAD button. This will
+update the internal drivers automaticaly and allow the accelerometer to work
+on both older and newer devices. (I will update this repo soon, when testing
+has been completed)
+
 ## Where is the latest version?
 
 The bitio library was written in part to support a new chapter to the highly successful
@@ -424,12 +435,4 @@ David Whale
 
 @whaleygeek
 
-1st July 2017
-
-
-
-
-
-
-
-
+30th April 2019
