@@ -87,7 +87,7 @@ designed to be mostly 'install free', specifically to make it easy for
 schools to use the package where there is a mostly locked-down Python
 environment.
 
-Press CLONE OR DOWNLOAD
+Press the green CODE button which shows a download icon
 
 choose DOWNLOAD ZIP
 
