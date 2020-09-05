@@ -292,6 +292,26 @@ micro:bit again and this will overwrite whatever is on the micro:bit screen.
         microbit.sleep(500)
 ```
 
+## Using the radio
+
+(see also radio.py example).
+
+Thanks to @jarvisteach for this contribution.
+
+```
+    import microbit
+    microbit.radio.config(group=132, queue=10)
+    microbit.radio.on()
+
+    while True:
+        time.sleep(0.1)
+        incoming = microbit.radio.receive_bytes()
+
+        if incoming != "None":  #TODO: api.py will need better None handler.
+            incoming = stripMakeCodeHeader(incoming)
+            print(incoming)
+```
+
 # TODO ITEMS
 
 These items are currently not implemented in this release, but will be added soon.
@@ -327,6 +347,7 @@ tilt.py - show how to sense tilt movements
 tilt_mc.py - use the tilt with Minecraft
 clocks.py - show a spinning clock
 arrows.py - show a spinning arrow
+radio.py - receive messages from a radio and log to a file (contributed)
 ```
 
 Not all of the features of the micro:bit are made available via this
@@ -423,10 +444,6 @@ I have a big todo list (look in the docs folder).
 One key thing I want to do is to pull all my various micro:bit comms projects into this single package, 
 including bringing in the microbit-gateway project for linking via the micro:bit radio network, amongst other features.
 
-I think this work will also add a radio configuration feature with assistance at the
-micro:bit end, so that it is possible to build multi channel frequency hopping gateways.
-That is a bit of a long term plan at the moment though.
-
 I also have a microbit.GPIO idea in the making, where it could be used a bit like RPi.GPIO
 and form part of my anyio package as another supported platform.
 
@@ -435,4 +452,4 @@ David Whale
 
 @whaleygeek
 
-30th April 2019
+5th September 2020

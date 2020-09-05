@@ -117,7 +117,7 @@ class MicroBit():
         def config(self, **kwargs):
             self.parent.cmd("import radio")
             kwargs_str = ', '.join('%s=%r' % x for x in kwargs.items())
-            print(kwargs_str)
+            ##print(kwargs_str)
             self.parent.cmd("%s.config(%s)" % (self.name, kwargs_str))
 
         def off(self):
@@ -127,10 +127,12 @@ class MicroBit():
             self.parent.cmd("%s.send(\"%s\")" % (self.name, message))
 
         def receive(self):
+            #TODO: may need to add better handling of None somehow?
             return self.parent.cmd("print(%s.receive())" % (self.name))
 
         def receive_bytes(self):
             data = self.parent.cmd("print(%s.receive_bytes())" % (self.name))
+            #TODO: may need to add better handling of None somehow?
             return data
         
         def reset(self):
