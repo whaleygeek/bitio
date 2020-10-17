@@ -74,6 +74,14 @@ Dr Simon Monk wrote about BitIO in his new MicroPython book:
 
 [Dr Simon Monk](https://www.amazon.com/Programming-BBC-micro-Getting-MicroPython/dp/1260117588)
 
+Musab Kılıç used with pyuserinput to build a motorbike simulator:
+
+[MicroBike](https://github.com/musabkilic/MicroBike)
+
+Muzaffer Yağız Yasak used with instructions from MicroBike and w10toast to build a reminder system:
+
+[MicroReminder](https://github.com/codermyagiz/MicroReminder)
+
 And of course, David Whale added a chapter to the book Adventures in Minecraft all about
 micro:bit and it uses bitio:
 
