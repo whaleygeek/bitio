@@ -9,6 +9,16 @@ with Python 3 on Mac, PC, Raspberry Pi and Linux.
 
 ![bitio logo](bitio.png)
 
+I gave a presentation at PyconUK 2017, which someone kindly recorded
+and uploaded to YouTube - here:
+
+[YouTube PyconUK 2017](https://www.youtube.com/watch?v=MnjMLWvRV6Q)
+
+## NEWSFLASH - using with a V2.0 micro:bit
+
+The Python API's for sound and other touch features are still stabilising at present
+on V2. I hope to add more support for V2 when things are a bit more stable.
+
 ## NEWSFLASH - using with a V1.5 micro:bit
 
 If you have a V1.5 micro:bit, a new sensor was fitted for the accelerometer and compass.
