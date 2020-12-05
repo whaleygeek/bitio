@@ -92,11 +92,11 @@ A proposal for change, is to support both methods.
 
 Thus, if you `import microbit` you will get the auto connect singleton. If
 you use something like `from microbit import device` then use
-`mb1 = device.connect(<optional identity info>)' you get a unique connection
+`mb1 = device.connect(<optional identity info>)` you get a unique connection
 to that device; thus, allowing multiple device support, and a more controlled
 method of connection (such as when you press a TKInter button, for example).
 
-We might also offer 'device.find()' to do a search for microbits where
+We might also offer `device.find()` to do a search for microbits where
 multiple are present, using the USB VID/PID to identify a UART device that
 is indeed a micro:bit, to prevent other serial devices being mis-detected.
 
