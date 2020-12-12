@@ -14,21 +14,19 @@ and uploaded to YouTube - here:
 
 [YouTube PyconUK 2017](https://www.youtube.com/watch?v=MnjMLWvRV6Q)
 
-## NEWSFLASH - using with a V2.0 micro:bit
+## NEWSFLASH - using with a V2.0 micro:bit or V1.5 micro:bit
 
 The Python API's for sound and other touch features are still stabilising at present
 on V2. I hope to add more support for V2 when things are a bit more stable.
 
-## NEWSFLASH - using with a V1.5 micro:bit
-
 If you have a V1.5 micro:bit, a new sensor was fitted for the accelerometer and compass.
 This requires new hardware drivers in order to work.
 
-A very quick fix for this is to drag the bitio.hex file inside this repository
-into https://python.microbit.org then press the DOWNLOAD button. This will
-update the internal drivers automaticaly and allow the accelerometer to work
-on both older and newer devices. (I will update this repo soon, when testing
-has been completed)
+You can get both a V1.5 and a V2 micro:bit to work by using the bitio.hex on the 
+newarch branch here: https://github.com/whaleygeek/bitio/tree/newarch
+
+I am currently testing all the examples on this new branch, and will pull
+them back on to the main branch here when they pass there tests.
 
 ## Where is the latest version?
 
