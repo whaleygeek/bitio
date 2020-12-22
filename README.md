@@ -59,7 +59,11 @@ inside a Python program on a bigger computer.
 
 # Show me some projects!
 
-News Flash! EduBlocks now has support for bitio!!
+Kevin Thomas from MyTechnoTalent, Washington DC, attended micro:bit Live 2020 and was
+signposted to bitio. He then went on to make some fantastic resources using bitio
+as a way to get internet connectivity.
+
+[ML with micro:bit](https://github.com/mytechnotalent/MicroPython-micro-bit_Talking_ML)
 
 Josh from EduBlocks added bitio support, after we met at PyconUK 2017.
 
