@@ -166,6 +166,12 @@ Your micro:bit has been detected
 Now running your program
 ```
 
+You could also specify the connected port by setting the environment variable
+`BITIO_PORT`:
+
+- Windows ```set BITIO_PORT=COM7```
+- GNU/Linux ```export BITIO_PORT=COM7```
+
 Finally, you should get a counter counting from 00 to 99 in the WhaleySans font
 (2x5 sized digits) on the display.
 
