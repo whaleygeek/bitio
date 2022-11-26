@@ -183,6 +183,8 @@ def getName(device_name=None):
   """read the remembered cached named, None if none stored"""
   if device_name is None:
     device_name = DEFAULT_DEVICE_NAME
+  if os.environ.get("BITIO_PORT"):
+    return os.environ.get("BITIO_PORT")
   try:
     f = open(CACHE_NAME, "r")
     name = f.readline().strip()
